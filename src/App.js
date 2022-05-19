@@ -7,13 +7,32 @@ function App() {
 
   const [movies,setMovies] = useState([]);
 
-   function movieListHandler()
-   {
+
+  function fetchDataHandler()
+  {
     fetch('https://swapi.dev/api/films')
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then( (data ) =>{
+      const transferForm = data.results.map(movieData => {
+        return{
+          id : movieData.episode_id,
+          title : movieData.title,
+          openingText : movieData.opening_crawl,
+          releaseDate : movieData.releaseDate
+        }
+      });
+
+      setMovies(transferForm);
+    });
+         // const transferForm = data.results.map( ( movieData ) => { 
+      //   return { 
+      //     id : movieData.episode_id,
+      //     title : movieData.title,
+      //     openingText : movieData.opening_crawl,
+      //     releaseDate : movieData.releaseDate
+      // }
   
-   }
+  }
   const dummyMovies = [
     {
       id: 1,
@@ -29,15 +48,13 @@ function App() {
     },
   ];
 
-
-
   return (
     <React.Fragment>
       <section>
-        <button onClick={movieListHandler}>Fetch Movies</button>
+        <button onClick={fetchDataHandler}> Fetch Movies</button>
       </section>
       <section>
-        <MoviesList movies={dummyMovies} />
+        <MoviesList movies={movies} />
       </section>
     </React.Fragment>
   );

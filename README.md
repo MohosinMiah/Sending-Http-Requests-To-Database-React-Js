@@ -31,3 +31,9 @@ Url `https://github.com/axios/axios`
 ## Fetch Data Using Fetch API
 
 URL : https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+
+## Sample API Used From Fetch 
+
+URL : https://swapi.dev/
+
+## Successfully fetch Data using fetch API 
