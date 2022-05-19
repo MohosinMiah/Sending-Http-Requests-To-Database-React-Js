@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import MoviesList from './components/MoviesList';
 import './App.css';
+import MoviesList from './components/MoviesList';
 
 function App() {
+
+  const [movies,setMovies] = useState([]);
+
+   function movieListHandler()
+   {
+    fetch('https://swapi.dev/api/films')
+    .then(response => response.json())
+    .then(data => console.log(data));
+  
+   }
   const dummyMovies = [
     {
       id: 1,
@@ -19,10 +29,12 @@ function App() {
     },
   ];
 
+
+
   return (
     <React.Fragment>
       <section>
-        <button>Fetch Movies</button>
+        <button onClick={movieListHandler}>Fetch Movies</button>
       </section>
       <section>
         <MoviesList movies={dummyMovies} />
