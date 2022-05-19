@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './App.css';
 import MoviesList from './components/MoviesList';
@@ -9,6 +9,9 @@ function App() {
   const [isLoading,setIsLoading] = useState(false);
   const [error,setError] = useState(null);
 
+  useEffect(() => {
+    fetchDataHandler();
+  },[fetchDataHandler]);
 
   async function fetchDataHandler()
   {
@@ -28,7 +31,7 @@ function App() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('https://swapi.dev/api/filmes');
+      const response = await fetch('https://swapi.dev/api/films');
       if( !response.ok )
       {
         throw new Error('Server Issue. No Movie Found');

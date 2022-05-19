@@ -40,3 +40,5 @@ URL : https://swapi.dev/
 
 ## Handling Loading and Data State
 
+
+## Data List display using useEffect
