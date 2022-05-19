@@ -37,3 +37,6 @@ URL : https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 URL : https://swapi.dev/
 
 ## Successfully fetch Data using fetch API 
+
+## Handling Loading and Data State
+

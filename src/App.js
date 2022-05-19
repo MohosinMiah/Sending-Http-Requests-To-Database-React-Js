@@ -6,6 +6,7 @@ import MoviesList from './components/MoviesList';
 function App() {
 
   const [movies,setMovies] = useState([]);
+  const [isLoading,setIsLoading] = useState(false);
 
 
   async function fetchDataHandler()
@@ -23,7 +24,7 @@ function App() {
     //   });
 
     // Now Using Async / Await 
-
+    setIsLoading(true);
     const response = await fetch('https://swapi.dev/api/films');
     const data = await response.json();
     const transferForm = data.results.map(movieData => {
@@ -37,31 +38,19 @@ function App() {
 
       setMovies(transferForm);
     
-        
+      setIsLoading(false);
+
   
   }
-  const dummyMovies = [
-    {
-      id: 1,
-      title: 'Some Dummy Movie',
-      openingText: 'This is the opening text of the movie',
-      releaseDate: '2021-05-18',
-    },
-    {
-      id: 2,
-      title: 'Some Dummy Movie 2',
-      openingText: 'This is the second opening text of the movie',
-      releaseDate: '2021-05-19',
-    },
-  ];
-
+  
   return (
     <React.Fragment>
       <section>
         <button onClick={fetchDataHandler}> Fetch Movies</button>
       </section>
       <section>
-        <MoviesList movies={movies} />
+        {!isLoading && <MoviesList movies={movies} />}
+        {isLoading && <p>Loading...</p>}
       </section>
     </React.Fragment>
   );
