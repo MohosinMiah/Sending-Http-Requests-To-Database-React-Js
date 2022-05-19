@@ -8,29 +8,36 @@ function App() {
   const [movies,setMovies] = useState([]);
 
 
-  function fetchDataHandler()
+  async function fetchDataHandler()
   {
-    fetch('https://swapi.dev/api/films')
-    .then(response => response.json())
-    .then( (data ) =>{
-      const transferForm = data.results.map(movieData => {
-        return{
-          id : movieData.episode_id,
-          title : movieData.title,
-          openingText : movieData.opening_crawl,
-          releaseDate : movieData.releaseDate
-        }
-      });
+    // fetch('https://swapi.dev/api/films')
+    // .then(response => response.json())
+    // .then( (data ) =>{
+    //   const transferForm = data.results.map(movieData => {
+    //     return{
+    //       id : movieData.episode_id,
+    //       title : movieData.title,
+    //       openingText : movieData.opening_crawl,
+    //       releaseDate : movieData.releaseDate
+    //     }
+    //   });
+
+    // Now Using Async / Await 
+
+    const response = await fetch('https://swapi.dev/api/films');
+    const data = await response.json();
+    const transferForm = data.results.map(movieData => {
+          return{
+            id : movieData.episode_id,
+            title : movieData.title,
+            openingText : movieData.opening_crawl,
+            releaseDate : movieData.releaseDate
+          }
+        });
 
       setMovies(transferForm);
-    });
-         // const transferForm = data.results.map( ( movieData ) => { 
-      //   return { 
-      //     id : movieData.episode_id,
-      //     title : movieData.title,
-      //     openingText : movieData.opening_crawl,
-      //     releaseDate : movieData.releaseDate
-      // }
+    
+        
   
   }
   const dummyMovies = [
